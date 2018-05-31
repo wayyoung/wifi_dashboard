@@ -30,7 +30,7 @@ public class Update0 {
                         new HttpHost("localhost", 9201, "http")));
 try {
     ESQuery eq=new ESQuery();
-    TreeMap<String,Map> devices=eq.queryDevices();
+    TreeMap<String,Object> devices=eq.queryDevices();
     System.out.println(devices.size());
     while ((line = bfr.readLine()) != null) {
         if (line.startsWith(",")) continue;
@@ -69,9 +69,9 @@ try {
 
             String id=null;
             if(mac!=null)
-                id=(String)devices.get(mac).get("_id");
+                id=(String)((Map)devices.get(mac)).get("_id");
             else
-                id=(String)devices.get(hmac).get("_id");
+                id=(String)((Map)devices.get(hmac)).get("_id");
 
             UpdateRequest request = new UpdateRequest("twplatform1", "kamino_device", "1");
 

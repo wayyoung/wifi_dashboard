@@ -57,7 +57,7 @@ public class Import0 {
                         new HttpHost(ELK.SERVER_IP, ELK.ES_PORT2, "http")));
         try {
             ESQuery eq = new ESQuery();
-            TreeMap<String, Map> devices = eq.queryDevices();
+            TreeMap<String, Object> devices = eq.queryDevices();
             System.out.println("DZ:"+devices.size());
             while ((line = bfr.readLine()) != null) {
                 if (line.startsWith(",") || line.startsWith("\"_sourcename")) continue;
@@ -109,7 +109,7 @@ public class Import0 {
                         new HttpHost(ELK.SERVER_IP, ELK.ES_PORT2, "http")));
         try {
             ESQuery eq = new ESQuery();
-            TreeMap<String, Map> devices = eq.queryDevices();
+            TreeMap<String, Object> devices = eq.queryDevices();
             int count=0;
             while ((line = bfr.readLine()) != null) {
                 System.out.println("count: "+(count++));

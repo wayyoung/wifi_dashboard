@@ -1,6 +1,5 @@
 package wd.cs.wifi;
 
-import javafx.scene.NodeBuilder;
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;

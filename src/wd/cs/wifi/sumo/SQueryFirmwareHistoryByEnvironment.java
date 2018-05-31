@@ -62,8 +62,8 @@ public class SQueryFirmwareHistoryByEnvironment {
 
 
 
-    public synchronized TreeMap<String, TreeMap<String,String>> doQuery() throws Exception {
-        TreeMap<String, TreeMap<String,String>> result = new TreeMap<String, TreeMap<String,String>>();
+    public synchronized TreeMap<String, TreeMap<String,Long>> doQuery() throws Exception {
+        TreeMap<String, TreeMap<String,Long>> result = new TreeMap<String, TreeMap<String,Long>>();
         String searchJobId = null;
         try {
 //            String sn="";
@@ -125,12 +125,12 @@ public class SQueryFirmwareHistoryByEnvironment {
 //                    List<String> fieldNames = new ArrayList<String>(message.getFieldNames());
 //                    Collections.sort(fieldNames);
                     String sn=fields.get("_sourcename");
-                    TreeMap<String,String> fw_recordMap=result.get(sn);
+                    TreeMap<String,Long> fw_recordMap=result.get(sn);
                     if(fw_recordMap==null){
                         fw_recordMap=new TreeMap<>();
                     }
-                    System.out.println(sn+":"+fields.get("fw_version")+","+fields.get("start"));
-                    fw_recordMap.put(fields.get("fw_version"),fields.get("start"));
+                    System.out.println(sn+":"+fields.get("fw_version")+","+fields.get("_first"));
+                    fw_recordMap.put(fields.get("fw_version"),Long.parseLong(fields.get("_first")));
                     result.put(sn,fw_recordMap);
                 }
                 System.out.println("done!!\n");
@@ -163,7 +163,7 @@ public class SQueryFirmwareHistoryByEnvironment {
     public static void main(String[] args)throws Exception{
         SQueryFirmwareHistoryByEnvironment qa=new SQueryFirmwareHistoryByEnvironment();
 
-        qa.setStart("2018-04-03T00:00:00Z");
+        qa.setStart("2018-05-01T00:00:00Z");
         qa.setEnd("2018-05-31T00:00:00Z");
         //qa.queryFirwareVersionBegin();
         //qa.queryDisconnectionCountOverFirmwareVersion();
